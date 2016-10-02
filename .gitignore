@@ -1,0 +1,7 @@
+out/
+target/
+.idea/
+*.iml
+*.json
+*.txt
+src/main/resources/
