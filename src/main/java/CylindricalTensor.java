@@ -35,6 +35,7 @@ public class CylindricalTensor  {
                 for( int i=0; i<DIM; i++ ) {
                     for( int j=0; j<DIM; j++ ) {
                         TENSOR[y][z][i][j] = computeTensor( y, z, i, j);
+                        System.out.println(TENSOR[y][z][i][j] );
                     }
                 }
             }

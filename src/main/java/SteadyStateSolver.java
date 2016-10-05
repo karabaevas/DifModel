@@ -23,6 +23,7 @@ public class SteadyStateSolver {
     }
 
     public int solve(BasicDomain3D domain, int maxIterations, double epsilon) {
+//        default init here
         checkDimensionsAndSynchronicity( domain );
 
         for (int t = 0; t < maxIterations; t++) {
