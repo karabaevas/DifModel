@@ -162,7 +162,10 @@ public class Jacobi3DThreaded {
 				for (pos[1] = 0; pos[1] < size_y; pos[1]++) {
 					for (pos[2] = 0; pos[2] < size_z; pos[2]++) {
 						if (!dom.trySetDefault(pos)) {
-							final double newConcentration = Math.min(1d, Math.max(0d, computeConcentration(dom, pos)));
+							final Double newConcentration = Math.min(1d, Math.max(0d, computeConcentration(dom, pos)));
+							if ("NaN".equalsIgnoreCase(newConcentration.toString())){
+								System.out.println(pos[0]+" "+ pos[1]+" "+pos[2]+" "+newConcentration);
+							}
 							final double diff = newConcentration - dom.getConcentration(pos);
 							dom.setConcentration(pos, newConcentration);
 							if (diff > maxDiff) {

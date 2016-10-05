@@ -9,6 +9,7 @@ import static java.lang.Math.abs;
  *
  * @author falcone
  */
+
 public class ArrayTools {
 
     private static final double REL_EPS = 1e-4;

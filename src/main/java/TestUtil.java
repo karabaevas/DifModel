@@ -10,8 +10,8 @@ import java.util.Random;
 
 public class TestUtil {
 
-    private double total_width = total_width = 10;
-    private double length = 10;
+    private double total_width = total_width = 3;
+    private double length =3;
     private double deltaX = 1;
     private double steadyStateThreshold = 0.0001;
     private int maxIter = 100;
