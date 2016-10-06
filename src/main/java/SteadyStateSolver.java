@@ -23,8 +23,7 @@ public class SteadyStateSolver {
     }
 
     public int solve(BasicDomain3D domain, int maxIterations, double epsilon) {
-//        default init here
-        checkDimensionsAndSynchronicity( domain );
+        setConcentrationByDefault( domain );
 
         for (int t = 0; t < maxIterations; t++) {
             double maxChange = method.step(domain);
@@ -40,14 +39,7 @@ public class SteadyStateSolver {
         return maxIterations;
     }
 
-    public void solve(BasicDomain3D domain, int maxIterations) {
-        checkDimensionsAndSynchronicity( domain );
-        for (int t = 0; t < maxIterations; t++) {
-            method.step(domain);
-        }
-    }
-
-    private void checkDimensionsAndSynchronicity(BasicDomain3D domain) {
+    private void setConcentrationByDefault(BasicDomain3D domain) {
 		domain.setConcentrationToDefault();
     }
 

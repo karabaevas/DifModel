@@ -11,7 +11,7 @@ import java.util.Random;
 public class TestUtil {
 
     private double total_width = total_width = 3;
-    private double length =3;
+    private double length =10;
     private double deltaX = 1;
     private double steadyStateThreshold = 0.0001;
     private int maxIter = 100;
@@ -19,9 +19,6 @@ public class TestUtil {
     private BasicDomain3D domain;
     private byte[][][] domainStruct;
     private int numThreads = 4;
-
-    static Random random = new Random();
-
 
     public void checkCorrectness() {
         sizeX = discretize(length, deltaX);
@@ -140,6 +137,8 @@ public class TestUtil {
                 Arrays.fill(struct[i][j], (byte) 1);
             }
         }
+
+//        TODO:add init of
         return struct;
     }
 }

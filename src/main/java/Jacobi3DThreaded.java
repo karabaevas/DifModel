@@ -64,8 +64,8 @@ public class Jacobi3DThreaded {
 	}
 	
 	private void divideDomain(BasicDomain3D dom) {
-		if (lastSize != dom.size()[0]) {
-			lastSize = dom.size()[0];
+		if (lastSize != dom.getSizesArray()[0]) {
+			lastSize = dom.getSizesArray()[0];
 			
 			// Rounded down
 			int colSize = lastSize / threads.length;
@@ -154,8 +154,8 @@ public class Jacobi3DThreaded {
 		
 		private double step() {
 			double maxDiff = 0d;
-			int size_y = dom.size()[Y];
-			int size_z = dom.size()[Z];
+			int size_y = dom.getSizesArray()[Y];
+			int size_z = dom.getSizesArray()[Z];
 			
 			int[] pos = new int[3];
 			for (pos[0] = this.from; pos[0] < this.to; pos[0]++) {
@@ -204,9 +204,9 @@ public class Jacobi3DThreaded {
 			double djk = conc[x][up][front]    + conc[x][down][rear] - conc[x][down][front] - conc[x][up][rear];
 
 			double div = tensor[X][X] + tensor[Y][Y] + tensor[Z][Z];
-			System.out.println("x " + tensor[X][X]);
-			System.out.println("y" + tensor[Y][Y]);
-			System.out.println("z" + tensor[Z][Z]);
+//			System.out.println("x " + tensor[X][X]);
+//			System.out.println("y" + tensor[Y][Y]);
+//			System.out.println("z" + tensor[Z][Z]);
 			double diag = tensor[X][X]*dii + tensor[Y][Y]*djj + tensor[Z][Z]*dkk;
 			double offdiag =  tensor[X][Y]*dij + tensor[X][Z]*dik + tensor[Y][Z]*djk;
 			return (2*diag + offdiag) / (4*div);

@@ -35,36 +35,18 @@ public class CylindricalTensor  {
                 for( int i=0; i<DIM; i++ ) {
                     for( int j=0; j<DIM; j++ ) {
                         TENSOR[y][z][i][j] = computeTensor( y, z, i, j);
-                        System.out.println(TENSOR[y][z][i][j] );
-                        System.out.println("y=" + y + " z=" + z + " i=" + i + " j=" + j);
+//                        System.out.println(TENSOR[y][z][i][j] );
+//                        System.out.println("y=" + y + " z=" + z + " i=" + i + " j=" + j);
                     }
                 }
             }
         }
     }
-    
 
-    public double value(int[] pos, int i, int j) {
-        return TENSOR[ pos[1] ][ pos[2] ][i][j];
-    }
-	
 	public double[][] values(int[] pos) {
         return TENSOR[ pos[1] ][ pos[2] ];
     }
 
-    public int dimension() {
-        return DIM;
-    }
-
-   /*             [     2                                   ]
-                  [ Dp r          0                0        ]
-                  [                                         ]
-(%o11)            [             2       2                   ]
-                  [   0     Dw z  + Dp y    Dw y z - Dp y z ]
-                  [                                         ]
-                  [                              2       2  ]
-                  [   0    Dw y z - Dp y z   Dp z  + Dw y   ]
-*/
     private double computeTensor(int y, int z, int i, int j) {
         final int Z = z - C_Z;
         final int Y = y - C_Y;
