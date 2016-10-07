@@ -163,9 +163,6 @@ public class Jacobi3DThreaded {
 					for (pos[2] = 0; pos[2] < size_z; pos[2]++) {
 						if (!dom.trySetDefault(pos)) {
 							final Double newConcentration = Math.min(1d, Math.max(0d, computeConcentration(dom, pos)));
-							if ("NaN".equalsIgnoreCase(newConcentration.toString())){
-								System.out.println(pos[0]+" "+ pos[1]+" "+pos[2]+" "+newConcentration);
-							}
 							final double diff = newConcentration - dom.getConcentration(pos);
 							dom.setConcentration(pos, newConcentration);
 							if (diff > maxDiff) {
@@ -204,9 +201,6 @@ public class Jacobi3DThreaded {
 			double djk = conc[x][up][front]    + conc[x][down][rear] - conc[x][down][front] - conc[x][up][rear];
 
 			double div = tensor[X][X] + tensor[Y][Y] + tensor[Z][Z];
-//			System.out.println("x " + tensor[X][X]);
-//			System.out.println("y" + tensor[Y][Y]);
-//			System.out.println("z" + tensor[Z][Z]);
 			double diag = tensor[X][X]*dii + tensor[Y][Y]*djj + tensor[Z][Z]*dkk;
 			double offdiag =  tensor[X][Y]*dij + tensor[X][Z]*dik + tensor[Y][Z]*djk;
 			return (2*diag + offdiag) / (4*div);

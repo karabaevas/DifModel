@@ -10,15 +10,18 @@ import java.util.Random;
 
 public class TestUtil {
 
-    private double total_width = total_width = 3;
-    private double length =10;
+    private double total_width = total_width = 25;
+    private double length =195;
     private double deltaX = 1;
-    private double steadyStateThreshold = 0.0001;
-    private int maxIter = 100;
+    private double steadyStateThreshold = 0.000000001;
+    private int maxIter = 10000;
     private int sizeX, sizeY, sizeZ;
     private BasicDomain3D domain;
     private byte[][][] domainStruct;
     private int numThreads = 4;
+    public final static byte SOURCE = 2;
+    public final static byte SINK = 0;
+
 
     public void checkCorrectness() {
         sizeX = discretize(length, deltaX);
@@ -102,6 +105,7 @@ public class TestUtil {
 //					}
             //считаем итерации тут
             int it = ss.solve(domain, maxIter, steadyStateThreshold);
+            System.out.println("iterations " + it);
 //               concentrationConduit.send(domain.getConcentrationMatrix());
 //                double[][] slice = domain.getConcentrationMatrix()[printX];
 //                ImageWriter iw = new ImageWriter(new PGMFormat(1.0));
@@ -138,7 +142,21 @@ public class TestUtil {
             }
         }
 
-//        TODO:add init of
+
+        for (int i = 0; i < sizeX; i++) {
+            for (int j = 0; j < sizeY; j++) {
+                for (int k = 0; k < sizeZ; k++) {
+                    if (k == 0 || k == sizeZ-1 || j == 0 || j == sizeY-1) {
+                        struct[i][j][k] = SOURCE;
+                    }
+
+                    if (k == sizeY/2 && j == sizeY/2) {
+                        struct[i][j][k] = SINK;
+                    }
+
+                }
+            }
+        }
         return struct;
     }
 }

@@ -24,8 +24,8 @@ public class SteadyStateSolver {
 
     public int solve(BasicDomain3D domain, int maxIterations, double epsilon) {
         setConcentrationByDefault( domain );
-
-        for (int t = 0; t < maxIterations; t++) {
+        int t = 0;
+        for (t = 0; t < maxIterations; t++) {
             double maxChange = method.step(domain);
             if (maxChange < epsilon) {
                 try {
@@ -36,7 +36,7 @@ public class SteadyStateSolver {
                 return t;
             }
         }
-        return maxIterations;
+        return t;
     }
 
     private void setConcentrationByDefault(BasicDomain3D domain) {
